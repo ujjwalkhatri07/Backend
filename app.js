@@ -10,13 +10,14 @@ const orderRouter = require('./routes/order');
 const vieworder=require('./routes/vieworder')
 const auth = require('./auth');
 const app = express();
+const PORT=process.env.PORT||90;
 const cors = require('cors');
 const dotenv = require("dotenv").config();
 
 
    
   //Connecting with Mongodb server
-  mongoose.connect('mongodb://127.0.0.1:27017/AssignmentAgile',{ 
+  mongoose.connect(process.env.MONGODB_URI||'mongodb://127.0.0.1:27017/AssignmentAgile',{ 
     useNewUrlParser: true, 
     useUnifiedTopology: true, 
     useFindAndModify: false, 
@@ -45,6 +46,6 @@ const dotenv = require("dotenv").config();
 
   //Listening to Port
 
-  app.listen(90, ()=>{
-    console.log(`App is running at localhost:90`);
+  app.listen(PORT, ()=>{
+    console.log(`App is running at localhost:${PORT}`);
 });
